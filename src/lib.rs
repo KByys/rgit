@@ -1,9 +1,8 @@
-use std::fs::metadata;
 use std::process::Command;
 
-use iofs::env::{current_dir_path, current_program_path};
+use iofs::env::current_program_path;
 use iofs::fs::pbuilder::PathBuilder;
-use iofs::prelude::{Console, DFiles, DirectoryInfo};
+use iofs::prelude::Console;
 #[cfg(windows)]
 static PROGRAM: &str = "powershell";
 
@@ -30,18 +29,21 @@ pub fn run(args: Vec<String>) {
 
                 if args.len() >= 5 {
                     let mut command = Command::new(PROGRAM);
-                    let _ = command
-                        .args(["git", "add", args[2].as_str()])
-                        .status()
-                        .unwrap();
-                    let _ = command
-                        .args(["git", "commit", "-m", args[3].as_str()])
-                        .status()
-                        .unwrap();
-                    let _ = command
-                        .args(["git", "push", "-u", "origin", args[4].as_str()])
-                        .status()
-                        .unwrap();
+                    let _ = command.arg(format!("git add {}", args[2].as_str())).status();
+                    // let _ = command.arg(format!("git commit -m {}", args[3].as_str())).status();
+                    println!("git commit -m {}", args[3]);
+                    // let _ = command
+                    //     .args(["git", "add", args[2].as_str()])
+                    //     .status()
+                    //     .expect("add error");
+                    // let _ = command
+                    //     .args(["git", "commit", "-m", args[3].as_str()])
+                    //     .status()
+                    //     .expect("commit err");
+                    // let _ = command
+                    //     .args(["git", "push", "-u", "origin", args[4].as_str()])
+                    //     .status()
+                    //     .unwrap();
                 }
             }
             // Clone
