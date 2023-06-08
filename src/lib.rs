@@ -24,28 +24,6 @@ pub fn run(args: Vec<String>) {
                 std::fs::write(path, username.as_bytes()).expect("Write Login Messages Error");
                 println!("Login successful")
             }
-            "push" => {
-                // push . <des> <master>
-
-                if args.len() >= 5 {
-                    let mut command = Command::new(PROGRAM);
-                    let _ = command.arg(format!("git add {}", args[2].as_str())).status();
-                    // let _ = command.arg(format!("git commit -m {}", args[3].as_str())).status();
-                    println!("git commit -m {}", args[3]);
-                    // let _ = command
-                    //     .args(["git", "add", args[2].as_str()])
-                    //     .status()
-                    //     .expect("add error");
-                    // let _ = command
-                    //     .args(["git", "commit", "-m", args[3].as_str()])
-                    //     .status()
-                    //     .expect("commit err");
-                    // let _ = command
-                    //     .args(["git", "push", "-u", "origin", args[4].as_str()])
-                    //     .status()
-                    //     .unwrap();
-                }
-            }
             // Clone
             _ => {
                 let http = "https://github.com/";
